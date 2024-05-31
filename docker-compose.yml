@@ -1,6 +1,6 @@
 version: "3.9"
 
-services: 
+services:
   app:
     build:
       context: .
@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
+      - dev-static-data:/vol/web
     command: >
       sh -c "python manage.py wait_for_db  &&
              python manage.py migrate &&
@@ -32,6 +33,8 @@ services:
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
 
-  
+
 volumes:
   dev-db-data:
+  dev-static-data:
+
